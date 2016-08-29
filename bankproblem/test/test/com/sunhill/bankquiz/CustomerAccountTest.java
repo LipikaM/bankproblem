@@ -38,8 +38,8 @@ public class CustomerAccountTest extends TestCase{
 		balance = 400;
 		accountId1 = 201;
 		accountId2 = 202;
-		customer1 = new Customer(101,accountId1,600,2);
-		customer2 = new Customer(102,accountId2,1000,3);
+		customer1 = new Customer(101,account1,600,2);
+		customer2 = new Customer(102,account2,1000,3);
 		account1 = new SavingsAccount(customer1, balance, accountId1);
 		account2 = new SavingsAccount(customer2, balance, accountId2);
 		account1.setAccountBalance(400);
@@ -72,6 +72,7 @@ public class CustomerAccountTest extends TestCase{
 	@Test
 	public void testWithdrawLessThanWithdrawLimit(){
 		CheckingAccount account1 = new CheckingAccount(customer1,balance, accountId1);
+		account1.setAccountLimit(1000);
 		account1.withdraw(accountId1, 500);
 		double currentBalance = account1.getAccountBalance();
 		assertTrue(currentBalance == -100);
@@ -81,6 +82,13 @@ public class CustomerAccountTest extends TestCase{
 	public void testWithdrawMoreThanWithdrawLimit(){
 		CheckingAccount account1 = new CheckingAccount(customer1,balance, accountId1);
 		account1.withdraw(accountId1, 700);
+	}
+	
+	@Test
+	public void testTransferMoney(){
+		CheckingAccount account1 = new CheckingAccount(customer1,balance, accountId1);
+		CheckingAccount account2 = new CheckingAccount(customer2,balance, accountId2);
+		
 	}
 	
 	/**

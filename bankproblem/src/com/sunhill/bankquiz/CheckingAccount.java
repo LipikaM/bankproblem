@@ -5,19 +5,19 @@ import org.apache.log4j.Logger;
 import com.sunhill.bankquiz.exceptions.UnauthorizedAccessException;
 import com.sunhill.bankquiz.exceptions.UnauthorizedOperationException;
 
-
 /*
  * Account activities
  * @author lipika majumdar
  */
 
-public class CheckingAccount extends Account{
-	
-	final static Logger logger = Logger.getLogger(SavingsAccount.class);
+public class CheckingAccount extends Account {
 
-	public CheckingAccount(Customer customer, double accountBalance, double accountId) {
+	final static Logger logger = Logger.getLogger(CheckingAccount.class);
+
+	public CheckingAccount(Customer customer, double accountBalance,
+			double accountId) {
 		super(customer, accountBalance, accountId);
-		
+
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class CheckingAccount extends Account{
 		} catch (UnauthorizedAccessException ex) {
 			logger.error("Unauthorized Account!!!");
 		}
-	
+
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class CheckingAccount extends Account{
 			if (account != getAccountId()) {
 				throw new UnauthorizedAccessException();
 			} else {
-				if (getCustomer().getAccountLimit() < ammount) { //check against the customer limit
+				if (getAccountLimit() < ammount) {
 					throw new UnauthorizedOperationException();
 				} else {
 					double currentBalance = getAccountBalance();
@@ -56,13 +56,6 @@ public class CheckingAccount extends Account{
 
 	}
 	
-	public void transferMoney(Account sourceAccount, Account destinationAccount, double amount){
-		if(amount < sourceAccount.getCustomer().getAccountLimit()){
-			sourceAccount.getCurrentAccountBalance(sourceAccount.getAccountId());
-			// To do...
-		}
-	}
-
 	@Override
 	public double getCurrentAccountBalance(double accId) {
 		try {
@@ -75,7 +68,5 @@ public class CheckingAccount extends Account{
 		return getAccountBalance();
 
 	}
-	
-	
 
 }

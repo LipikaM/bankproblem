@@ -57,6 +57,12 @@ public class SavingsAccount extends Account {
 		}
 
 	}
+	
+	public void trasferMoney(Customer custSource, Customer custDestination, double amount){
+		
+		
+		
+	}
 
 	@Override
 	public double getCurrentAccountBalance(double accId) {

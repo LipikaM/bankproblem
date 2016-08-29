@@ -1,21 +1,24 @@
 package com.sunhill.bankquiz;
 
+/*
+ * Bank customer pojo with Account(Composite data type) associated with it.
+ */
 public class Customer {
 	
 	private double customerId;
-	private double accountNumber;
 	private double accountLimit;
 	private double interestRate;
+	private Account account; // this attribute can further extend to list of the accounts as a customer can have multiple accounts
 		
 	public Customer() {
 		super();
 	}
 		
-	public Customer(double customerId, double accountNumber,
+	public Customer(double customerId, Account account,
 			double accountLimit, double interestRate) {
 		super();
 		this.customerId = customerId;
-		this.accountNumber = accountNumber;
+		this.account = account;
 		this.accountLimit = accountLimit;
 		this.interestRate = interestRate;
 	}
@@ -25,12 +28,6 @@ public class Customer {
 	}
 	public void setCustomerId(double customerId) {
 		this.customerId = customerId;
-	}
-	public double getAccountNumber() {
-		return accountNumber;
-	}
-	public void setAccountNumber(double accountNumber) {
-		this.accountNumber = accountNumber;
 	}
 	public double getAccountLimit() {
 		return accountLimit;
@@ -43,6 +40,14 @@ public class Customer {
 	}
 	public void setInterestRate(double interestRate) {
 		this.interestRate = interestRate;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 	
 
