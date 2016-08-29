@@ -22,8 +22,8 @@ import junit.framework.TestSuite;
 public class CustomerAccountTest extends TestCase{
 	
 	private double balance;
-	private double accountId;
-	private double custId;
+	private double accountId1;
+	private double accountId2;
 	private SavingsAccount account1;
 	private SavingsAccount account2;
 	private Customer customer1;
@@ -36,12 +36,12 @@ public class CustomerAccountTest extends TestCase{
 	@Before
 	protected void setUp() {
 		balance = 400;
-		accountId = 201;
-		custId=101;
-		customer1 = new Customer(custId,accountId,600,2);
-		customer2 = new Customer(102,202,1000,3);
-		account1 = new SavingsAccount(customer1,balance, accountId);
-		account2 = new SavingsAccount(customer2, balance, accountId);
+		accountId1 = 201;
+		accountId2 = 202;
+		customer1 = new Customer(101,accountId1,600,2);
+		customer2 = new Customer(102,accountId2,1000,3);
+		account1 = new SavingsAccount(customer1, balance, accountId1);
+		account2 = new SavingsAccount(customer2, balance, accountId2);
 		account1.setAccountBalance(400);
 		account2.setAccountBalance(600);
 		
@@ -56,14 +56,14 @@ public class CustomerAccountTest extends TestCase{
 	
 	@Test
 	public void testDeposit(){
-		account1.deposit(accountId, 200);
+		account1.deposit(accountId1, 200);
 		double currentBalance = account1.getAccountBalance();
 		assertTrue(currentBalance == 600);
 	}
 	
 	@Test
 	public void testWithdraw(){
-		account1.withdraw(accountId, 100);
+		account1.withdraw(accountId1, 100);
 		double currentBalance = account1.getAccountBalance();
 		assertTrue(currentBalance == 300);
 	}
@@ -71,16 +71,16 @@ public class CustomerAccountTest extends TestCase{
 
 	@Test
 	public void testWithdrawLessThanWithdrawLimit(){
-		CheckingAccount account1 = new CheckingAccount(customer1,balance, accountId);
-		account1.withdraw(accountId, 500);
+		CheckingAccount account1 = new CheckingAccount(customer1,balance, accountId1);
+		account1.withdraw(accountId1, 500);
 		double currentBalance = account1.getAccountBalance();
 		assertTrue(currentBalance == -100);
 	}
 	
 	@Test(expected = Exception.class)  
 	public void testWithdrawMoreThanWithdrawLimit(){
-		CheckingAccount account1 = new CheckingAccount(customer1,balance, accountId);
-		account1.withdraw(accountId, 700);
+		CheckingAccount account1 = new CheckingAccount(customer1,balance, accountId1);
+		account1.withdraw(accountId1, 700);
 	}
 	
 	/**
