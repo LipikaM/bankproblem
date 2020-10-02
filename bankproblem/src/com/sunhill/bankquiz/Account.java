@@ -2,6 +2,7 @@ package com.sunhill.bankquiz;
 
 
 /*
+ * This follows an abstract design pattern for the code design
  * Account will provide an abstract mean of deposit, withdraw & currentBalance
  * @author lipika majumdar
  */
